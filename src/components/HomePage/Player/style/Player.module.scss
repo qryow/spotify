@@ -1,0 +1,130 @@
+.block {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 12%;
+  //padding: 0 0px 10px;
+}
+.content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #090909;
+  padding: 0 20px;
+  //border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.left__block {
+  width: 17%;
+  //height: 100%;
+  //background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.left__block img {
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  margin-right: 16px;
+}
+.names h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #fff;
+  user-select: none;
+}
+.names h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #979797;
+  user-select: none;
+}
+.like__wrapper {
+  width: 5%;
+  height: auto;
+  margin-left: 30px;
+  cursor: pointer;
+}
+.like__wrapper img {
+  width: 100%;
+}
+
+
+.middle__block {
+  width: 40%;
+  height: 70px;
+  //background-color: #9b3a3a;
+}
+.buttons {
+  width: 38%;
+  margin: 0 auto;
+  height: 60%;
+  //background-color: #1f1616;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.buttons img {
+  cursor: pointer;
+}
+.play__icon {
+  width: 14%;
+}
+.navigation {
+  width: 80%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  padding-right: 25px;
+  margin: 10px auto 0;
+  //background-color: #6e1818;
+}
+.navigation h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #979797;
+  user-select: none;
+}
+.navigation_wrapper {
+  min-width: 100%;
+  background-color: #c7c7c7;
+  //margin-left: 17px;
+  margin: 0px 15px 2px;
+  height: 4px;
+  border-radius: 30px;
+  cursor: pointer;
+  position: relative;
+}
+.seek_bar {
+  width: 0;
+  height: 100%;
+  background-color: #39ff7b;
+  border-radius: 30px;
+  position: relative;
+}
+.cursor {
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  cursor: pointer;
+}
+
+.right__block {
+  margin-left: 8%;
+  width: 15%;
+  height: 50px;
+  background-color: #fff;
+}
