@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import style from "./style/main.module.scss"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import arrowIcon from '../../../img/icons/Arrow.svg'
 import ava from '../../../img/icons/Frame 11.png'
 import arrowDownIcon from '../../../img/icons/Frame 12.svg'
 import poster from '../../../img/icons//Screenshot 2022-06-04 at 20.09.svg'
+import { useClickOutside } from '../../../helpers/hooks';
 
 const MainComponent = () => {
+  const [sortDrop, setSortDrop] = useState(false);
+
+  const navigate = useNavigate();
+
+  const menuRef = useRef(null);
+  useClickOutside(menuRef, () => {
+    setSortDrop(false)
+  });
+  
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -44,18 +56,34 @@ const MainComponent = () => {
               </div>
             </div>
 
-            <div className={style.account__block}>
+            <div className={style.account__block}  onClick={() => setSortDrop(!sortDrop)} ref={menuRef}>
               <img className={style.acc__ava} src={ava} alt="" />
               <h4>Название акк</h4>
-              <img className={style.acc__arrow} src={arrowDownIcon} alt="" />
+              <img className={sortDrop ? `${style.active__img}` : `${style.acc__arrow}`} src={arrowDownIcon} alt="" />
             </div> 
+            <div className={sortDrop ? `${style.sort__block} ${style.active}` : `${style.sort__block}`}>
+              {/*<h4>Сортировка</h4>*/}
+
+              <div className={style.sort__item} onClick={() => navigate('/profile')}>
+                <h5>Аккаунт</h5>
+              </div>
+              <div className={style.sort__item} >
+                <h5>Пока ничего</h5>
+              </div>
+              <div className={style.sort__item}>
+                <h5>Пока ничего</h5>
+              </div>
+              <div className={style.sort__item}>
+                <h5>Пока ничего</h5>
+              </div>
+            </div>
           </div>
 
           <h1 className={style.main__title}>Good afternoon</h1>
           <div className={style.playlists__wrapper}>
-            <div className={style.playlist__item}>
+            <div className={style.playlist__item} onClick={() => navigate('/allsongs/')}>
               <img src={poster} alt="" />
-              <h4>Chill mix</h4>
+              <h4>Все песни</h4>
             </div>
             
             <div className={style.playlist__item}>

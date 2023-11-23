@@ -231,9 +231,11 @@
   width: 58%;
   height: 230px;
   background-color: #313131;
+  pointer-events: none;
 }
 .sort__block.active {
   opacity: 1;
+  pointer-events: all;
 }
 .sort__block h4 {
   font-family: 'Montserrat', sans-serif;

@@ -6,9 +6,13 @@ import Player from '../components/HomePage/Player/Player'
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from '../store/store'
 import { getOneUser, getUsers } from '../store/Slices/AuthSlice'
+import PlaylistDetails from '../components/HomePage/Playlist/PlaylistDetails'
+import { useLocation } from 'react-router-dom'
+import AllSongs from '../components/HomePage/Playlist/AllSongs'
 
 
-const HomePage = () => {
+const PlaylistDetailsPage = () => {
+  const location = useLocation()
   interface AccountState {
     activeAcc: ActiveAccount | null;
   }
@@ -24,10 +28,8 @@ const HomePage = () => {
   const dispatch = useDispatch()
 
   const [active, setActive] = useState(false)
-  console.log(active)
   
   const { activeAcc } = useSelector((state: RootState) => state.account);
-  console.log(activeAcc);
 
   useEffect(() => {
     if (activeAcc) {
@@ -52,7 +54,7 @@ const HomePage = () => {
       {/*<div className={active ? 'wrapper' : 'wrapper'}>*/}
         <div className='container'>
           <Navbar />
-          <MainComponent />
+          <PlaylistDetails />
           <SideBar />
           <Player />
         </div>
@@ -61,4 +63,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default PlaylistDetailsPage

@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useClickOutside } from '../../../helpers/hooks';
+import { useDispatch, useSelector } from 'react-redux';
 
 import style from "./navbar.module.scss";
 import homeIcon from '../../../img/icons/Home.svg'
@@ -13,6 +14,8 @@ import arrowIcon from '../../../img/icons/Arrow.svg'
 import arrowDownIcon from '../../../img/icons/ArrowDown.svg'
 import closeIcon from '../../../img/icons/close.svg'
 import Icon from '../../../img/icons/e699fb7cd6ce72d00445fac66fdfc997.jpg'
+import { getOneUser } from '../../../store/Slices/AuthSlice';
+import { createPlaylist, getPlaylists } from '../../../store/Slices/SongSlice';
 
 
 const Navbar = () => {
@@ -20,7 +23,19 @@ const Navbar = () => {
   const navigate = useNavigate()
   const [SearchInput, setSearchInput] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [sortDrop, setSortDrop] = useState(false)
+  const [sortDrop, setSortDrop] = useState(false);
+
+  const dispatch = useDispatch()
+
+  const [playlistObj, setPlaylist] = useState({
+      PlaylistName: 'Название вашего плейлиста',
+      PlaylistBg: 'https://i.pinimg.com/564x/85/df/5e/85df5ede384599060330d838c8415174.jpg',
+      PlaylistSongs: [
+        // Массив объектов PlaylistSong
+      ],
+      author: '',
+      id: '',
+  })
   
   const menuRef = useRef(null);
   useClickOutside(menuRef, () => {
@@ -40,15 +55,80 @@ const Navbar = () => {
     setSortDrop(false);
   };
 
+  interface AccountState {
+    activeAcc: ActiveAccount | null;
+  }
+  interface SongsState {
+    myPlaylists: Playlists | [];
+  }
+  interface PlaylistSong {
+    // Определите структуру элемента плейлиста
+  }
+  interface Playlists {
+    PlaylistName: string;
+    PlaylistBg: string;
+    PlaylistSongs: PlaylistSong[];
+    author: string,
+    id: string,
+  }
+  interface ActiveAccount {
+    isActive: boolean;
+    id: string | number;
+    username: string;
+    avatar: string;
+    isVerified: boolean,
+  }
+  interface RootState {
+    account: AccountState;
+    songs: SongsState;
+  }
+  interface OnePlaylist {
+
+  }
+
+  const [active, setActive] = useState(false)
+  
+  //const { activeAcc } = useSelector((state: RootState) => state.account);
+  //const { playlists } = useSelector((state: RootState) => state.songs);
+  const { myPlaylists } = useSelector((state: RootState) => state.songs)
+
+  const { activeAcc } = useSelector((state: RootState) => state.account);
+
+
+  useEffect(() => {
+    dispatch(getPlaylists() as any)
+    //dispatch(createPlaylist(playlistObj) as any)
+  }, [])
+
+  useEffect(() => {
+    if (activeAcc) {
+      localStorage.setItem('accountObj', JSON.stringify({username: activeAcc.username, isActive: activeAcc.isActive, id: activeAcc.id}))
+    }
+    if (activeAcc && activeAcc.isActive === true) {
+      setPlaylist({ ...playlistObj, author: activeAcc.username })
+      //dispatch(getOneUser({ id: activeAcc.id }) as any);
+      return setActive(true);
+    }
+  }, [activeAcc])
+
+  useEffect(() => {
+    const accountObjString = localStorage.getItem('accountObj');
+    if (accountObjString) {
+      const parsedAccountObj = JSON.parse(accountObjString);
+      dispatch(getOneUser({ id: parsedAccountObj.id }) as any);
+    }
+  }, []);
+
+
   return (
     <>
       <div className={style.wrapper}>
         <div className={style.navbar}>
           <div className={style.menu__item}>
             <div className={style.icon__wrapper}>
-              <img src={`${location.pathname === '/homepage' ? homeIconActive : homeIcon}`} alt="home" onClick={() => navigate('/homepage')} />
+              <img src={`${location.pathname === '/' ? homeIconActive : homeIcon}`} alt="home" onClick={() => navigate('/')} />
             </div>
-            <h3 className={`${location.pathname === '/homepage' ? `${style.menu__name} ${style.active__text}` : `${style.menu__name}`}`} onClick={() => navigate('/homepage')} >Главная</h3>
+            <h3 className={`${location.pathname === '/' ? `${style.menu__name} ${style.active__text}` : `${style.menu__name}`}`} onClick={() => navigate('/')} >Главная</h3>
             
           </div>
           <div className={style.menu__item}>
@@ -64,12 +144,12 @@ const Navbar = () => {
 
             <div className={style.side__nav}>
               <div className={style.icon__wrapper2}>
-                <img src={playlistIcon} alt="playlist" />
+                <img src={playlistIcon} alt="playlistObj" />
               </div>
               <h3 className={style.side__title}>Моя медиатека</h3>
 
               <div className={style.icons__wrapper}>
-                <div className={style.round__icon}>
+                <div className={style.round__icon} onClick={() => {dispatch(createPlaylist(playlistObj) as any)}}>
                   <img src={plusIcon} alt="" />
                 </div>
                 <div className={style.round__icon}>
@@ -122,89 +202,19 @@ const Navbar = () => {
                     </div>
                   </div>
               </div>
+                    
 
-              <div className={style.one__playlist}>
-                <img className={style.one__img} src={Icon} alt="" />
-                <div className={style.one__texts}>
-                  <h4>Название плейлиста</h4>
-                  <h5>Плейлист - мой</h5>
+              {Array.isArray(myPlaylists) && myPlaylists.map((playlist: Playlists) => (
+                <div className={style.one__playlist} onClick={() => navigate(`/playlist/${playlist.id}/`)} key={playlist.id}>
+                  <img className={style.one__img} src={playlist.PlaylistBg} alt="" />
+                  <div className={style.one__texts}>
+                    <h4>{playlist.PlaylistName}</h4>
+                    <h5>Плейлист - {playlist.author}</h5>
+                  </div>
                 </div>
-              </div>
-
-              <div className={style.one__playlist}>
-                <img className={style.one__img} src={Icon} alt="" />
-                <div className={style.one__texts}>
-                  <h4>Название плейлиста</h4>
-                  <h5>Плейлист - мой</h5>
-                </div>
-              </div>
-
-              <div className={style.one__playlist}>
-                <img className={style.one__img} src={Icon} alt="" />
-                <div className={style.one__texts}>
-                  <h4>Название плейлиста</h4>
-                  <h5>Плейлист - мой</h5>
-                </div>
-              </div>
-
-              <div className={style.one__playlist}>
-                <img className={style.one__img} src={Icon} alt="" />
-                <div className={style.one__texts}>
-                  <h4>Название плейлиста</h4>
-                  <h5>Плейлист - мой</h5>
-                </div>
-              </div>
-
-              <div className={style.one__playlist}>
-                <img className={style.one__img} src={Icon} alt="" />
-                <div className={style.one__texts}>
-                  <h4>Название плейлиста</h4>
-                  <h5>Плейлист - мой</h5>
-                </div>
-              </div>
-
-              <div className={style.one__playlist}>
-                <img className={style.one__img} src={Icon} alt="" />
-                <div className={style.one__texts}>
-                  <h4>Название плейлиста</h4>
-                  <h5>Плейлист - мой</h5>
-                </div>
-              </div>
-
-              <div className={style.one__playlist}>
-                <img className={style.one__img} src={Icon} alt="" />
-                <div className={style.one__texts}>
-                  <h4>Название плейлиста</h4>
-                  <h5>Плейлист - мой</h5>
-                </div>
-              </div>
-
-              <div className={style.one__playlist}>
-                <img className={style.one__img} src={Icon} alt="" />
-                <div className={style.one__texts}>
-                  <h4>Название плейлиста</h4>
-                  <h5>Плейлист - мой</h5>
-                </div>
-              </div>
-              <div className={style.one__playlist}>
-                <img className={style.one__img} src={Icon} alt="" />
-                <div className={style.one__texts}>
-                  <h4>Название плейлиста</h4>
-                  <h5>Плейлист - мой</h5>
-                </div>
-              </div>
-              <div className={style.one__playlist}>
-                <img className={style.one__img} src={Icon} alt="" />
-                <div className={style.one__texts}>
-                  <h4>Название плейлиста</h4>
-                  <h5>Плейлист - мой</h5>
-                </div>
-              </div>
+              ))}
 
 
-
-
-            
             </div>
 
           </div>
