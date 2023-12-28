@@ -23,7 +23,7 @@ interface RootState {
   playlists: Playlists;
 }
 interface SongsState {
-  playlists: Playlists | [];
+  myPlaylists: Playlists | [];
   onePlaylist: Playlists | undefined;
   songs: PlaylistSong | undefined;
   selectedSong: PlaylistSong | undefined;
@@ -57,7 +57,7 @@ const OneSong: React.FC<OneSongProps> = ({ music }) => {
 
   const navigate = useNavigate();
 
-  const { playlists } = useSelector((state: RootState) => state.songs);
+  const { myPlaylists } = useSelector((state: RootState) => state.songs);
   const { selectedSong } = useSelector((state: RootState) => state.songs);
 
   const menuRef = useRef(null);
@@ -107,7 +107,7 @@ const OneSong: React.FC<OneSongProps> = ({ music }) => {
             </div>
           </div>
           <div className={addModal ? `${style.song__block} ${style.active__song} ${style.height}` : `${style.song__block}`}>
-            {Array.isArray(playlists) && playlists.map((playlist: Playlists) => (
+            {Array.isArray(myPlaylists) && myPlaylists.map((playlist: Playlists) => (
               <>
                 <div className={style.sort__item} onClick={() => dispatch(addToPlaylist({playlistId: playlist.id, songObj: selectedSong}) as any)} key={playlist.id} >
                   <h5>{playlist.PlaylistName}</h5>

@@ -36,6 +36,7 @@ interface singerAction {
   isVerified: boolean;
   singerName: string;
   singerbg: string;
+  isActive: boolean;
 }
 
 export const registerUser = createAsyncThunk<User[], RegisterUserAction>(
@@ -80,50 +81,6 @@ export const getOneUser = createAsyncThunk(
     return res.data
   }
 )
-
-//export const createPlaylist = createAsyncThunk(
-//  'account/createPlaylist',
-//  async ({ playlistObj }: { playlistObj: PlaylistAction }) => {
-//    // Генерируем уникальный идентификатор для нового плейлиста
-//    const newPlaylistId = Date.now();
-
-//    // Добавляем уникальный идентификатор к новому плейлисту
-//    const newPlaylist = {
-//      ...playlistObj.playlist,
-//      id: newPlaylistId,
-//    };
-
-//    // Отправляем запрос на сервер с новым плейлистом
-//    const res = await axios.post(`${ACCOUNT_API}`, { playlist: newPlaylist });
-//    return res.data;
-//  }
-//);
-
-//export const createPlaylist = createAsyncThunk(
-//  'account/createPlaylist',
-//  async (playlistObj: PlaylistAction) => {
-//    // Получаем текущий список аккаунтов с сервера
-//    const res = await axios.get(`${ACCOUNT_API}`);
-//    const currentAccounts = res.data.account;
-
-//    // Находим аккаунт пользователя в текущем списке
-//    const currentUser = currentAccounts.find((acc) => acc.id === playlistObj.playlist.id);
-
-//    // Если аккаунт пользователя найден
-//    if (currentUser) {
-//      // Обновляем список плейлистов пользователя
-//      currentUser.playlist = playlistObj.playlist;
-      
-//      // Отправляем обновленный список на сервер
-//      const updateRes = await axios.put(`${ACCOUNT_API}`, { account: currentAccounts });
-//      return updateRes.data;
-//    } else {
-//      // Если аккаунт пользователя не найден, бросаем ошибку
-//      throw new Error('Пользователь не найден');
-//    }
-//  }
-//);
-
 
 
 const accountSlice = createSlice({

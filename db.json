@@ -6,12 +6,12 @@
       "password_confirm": "123456",
       "isActive": true,
       "avatar": "https://i.pinimg.com/564x/3e/f1/ec/3ef1ec48b03076009518fdc3a0ab8e02.jpg",
-      "isVerified": true,
-      "singerName": "singerName",
+      "isVerified": false,
+      "singerName": "elmarsinger",
       "singerBg": "https://i.pinimg.com/564x/4d/0a/a9/4d0aa9f4ce6c73a856a1d3036018feb3.jpg",
+      "playlist": {},
       "id": 1,
-      "playlists": [],
-      "author": "elmar"
+      "singerbg": ""
     }
   ],
   "songs": [
@@ -85,6 +85,102 @@
       "songAlbum": "",
       "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
       "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 11,
+      "songName": "Elmar2",
+      "songAlbum": "https://i.pinimg.com/236x/91/83/94/918394f2c6ff9c368db7c585eb1567fa.jpg",
+      "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
+      "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 12,
+      "songName": "Elmar2",
+      "songAlbum": "https://i.pinimg.com/236x/91/83/94/918394f2c6ff9c368db7c585eb1567fa.jpg",
+      "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
+      "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 13,
+      "songName": "Elmar2",
+      "songAlbum": "https://i.pinimg.com/236x/91/83/94/918394f2c6ff9c368db7c585eb1567fa.jpg",
+      "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
+      "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 14,
+      "songName": "Elmar2",
+      "songAlbum": "https://i.pinimg.com/236x/91/83/94/918394f2c6ff9c368db7c585eb1567fa.jpg",
+      "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
+      "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 15,
+      "songName": "Elmar2",
+      "songAlbum": "https://i.pinimg.com/236x/91/83/94/918394f2c6ff9c368db7c585eb1567fa.jpg",
+      "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
+      "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 16,
+      "songName": "Elmar2",
+      "songAlbum": "https://i.pinimg.com/236x/91/83/94/918394f2c6ff9c368db7c585eb1567fa.jpg",
+      "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
+      "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 17,
+      "songName": "Elmar2",
+      "songAlbum": "https://i.pinimg.com/236x/91/83/94/918394f2c6ff9c368db7c585eb1567fa.jpg",
+      "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
+      "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 18,
+      "songName": "Elmar2",
+      "songAlbum": "https://i.pinimg.com/236x/91/83/94/918394f2c6ff9c368db7c585eb1567fa.jpg",
+      "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
+      "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 19,
+      "songName": "Elmar2",
+      "songAlbum": "https://i.pinimg.com/236x/91/83/94/918394f2c6ff9c368db7c585eb1567fa.jpg",
+      "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
+      "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 20,
+      "songName": "Elmar2",
+      "songAlbum": "https://i.pinimg.com/236x/91/83/94/918394f2c6ff9c368db7c585eb1567fa.jpg",
+      "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
+      "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 21,
+      "songName": "Elmar2",
+      "songAlbum": "https://i.pinimg.com/236x/91/83/94/918394f2c6ff9c368db7c585eb1567fa.jpg",
+      "songPoster": "https://i.pinimg.com/564x/c2/a2/37/c2a237797a15a483ed0be27e00a064fa.jpg",
+      "songUrl": "",
+      "author": "elmar"
+    },
+    {
+      "id": 22,
+      "songName": "qwe",
+      "songAlbum": "qwe",
+      "songPoster": "https://i.pinimg.com/236x/c7/e5/3b/c7e53b9868b5e924b4f7bb19993ce2d7.jpg",
+      "songUrl": "https://firebasestorage.googleapis.com/v0/b/spotify-d8311.appspot.com/o/Rick%20Astley%20%E2%80%93%20Never%20Gonna%20Give%20You%20Up.mp3?alt=media&token=eed85f53-9f23-4a0c-a094-0d71cbd90a45",
       "author": "elmar"
     }
   ],
@@ -182,6 +278,42 @@
       ],
       "author": "elmar",
       "id": 6
+    },
+    {
+      "PlaylistName": "Название вашего плейлиста",
+      "PlaylistBg": "https://i.pinimg.com/564x/85/df/5e/85df5ede384599060330d838c8415174.jpg",
+      "PlaylistSongs": [],
+      "author": "",
+      "id": 7
+    },
+    {
+      "PlaylistName": "Название вашего плейлиста",
+      "PlaylistBg": "https://i.pinimg.com/564x/85/df/5e/85df5ede384599060330d838c8415174.jpg",
+      "PlaylistSongs": [
+        {
+          "id": 3,
+          "songName": "skibid",
+          "songAlbum": "little big safdasfasd",
+          "songPoster": "https://i.pinimg.com/236x/b7/33/e0/b733e0d39985a85e186ed706468f3a75.jpg",
+          "songUrl": "https://firebasestorage.googleapis.com/v0/b/spotify-d8311.appspot.com/o/Redbone%20-%20Come%20and%20Get%20Your%20Love.mp3?alt=media&token=be7b8479-d379-46fc-b804-9e5c027fe9ad"
+        }
+      ],
+      "author": "elmar",
+      "id": 8
+    },
+    {
+      "PlaylistName": "Название вашего плейлиста",
+      "PlaylistBg": "https://i.pinimg.com/564x/85/df/5e/85df5ede384599060330d838c8415174.jpg",
+      "PlaylistSongs": [],
+      "author": "",
+      "id": 9
+    },
+    {
+      "PlaylistName": "Название вашего плейлиста",
+      "PlaylistBg": "https://i.pinimg.com/564x/85/df/5e/85df5ede384599060330d838c8415174.jpg",
+      "PlaylistSongs": [],
+      "author": "elmar",
+      "id": 10
     }
   ]
 }

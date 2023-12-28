@@ -33,9 +33,7 @@ interface SongsState {
   selectedSong: PlaylistSong | undefined;
 }
 interface RootState {
-  //account: AccountState;
   songs: SongsState;
-  //seletedSong: SongsState;
 }
 
 
@@ -44,7 +42,7 @@ const Player = () => {
   const clickRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoProgress, setVideoProgress] = useState(0);
-  const [videoDuration, setVideoDuration] = useState<number>(0); // Длительность видео
+  const [videoDuration, setVideoDuration] = useState<number>(0);
   const [isDragging, setIsDragging] = useState(false);
 
   const { selectedSong } = useSelector((state: RootState) => state.songs);
@@ -60,8 +58,6 @@ const Player = () => {
           setVideoProgress((currentTime / duration) * 100);
         }
       });
-  
-      // Устанавливаем длительность видео после того, как метаданные загрузились
       videoElement.addEventListener('loadedmetadata', () => {
         setVideoDuration(videoElement.duration);
       });

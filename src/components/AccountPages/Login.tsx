@@ -3,13 +3,30 @@ import style from './styles/register.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { RootState } from '../../store/store'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUsers, loginUser } from '../../store/Slices/AuthSlice'
+import { getOneUser, getUsers, loginUser } from '../../store/Slices/AuthSlice'
 
 import facebook from '../../img/icons/facebook.svg'
 import apple from '../../img/icons/apple.svg'
 import google from '../../img/icons/google.svg'
 import passVisible from '../../img/icons/eye-open.svg'
 import passUnvisible from '../../img/icons/eye-cl.svg'
+
+
+interface ActiveAccount {
+  isActive: boolean;
+  id: string | number;
+  username: string;
+  avatar: string;
+  isVerified: boolean,
+  password: string;
+}
+interface AccountState {
+  activeAcc: ActiveAccount | null;
+  accounts: ActiveAccount | null
+}
+interface RootState2 {
+  account: AccountState;
+}
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -59,19 +76,37 @@ const Login = () => {
     }
   };
 
+  const [active, setActive] = useState(false)
+  console.log(active)
+  const { activeAcc } = useSelector((state: RootState2) => state.account);
+  console.log(activeAcc);
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   useEffect(() => {
     dispatch(getUsers() as any)
+    dispatch(getOneUser({id: matchingUser}) as any)
   }, [])
+
+  useEffect(() => {
+    if (activeAcc) {
+      localStorage.setItem('accountObj', JSON.stringify({username: activeAcc.username, isActive: activeAcc.isActive, id: activeAcc.id}));
+    }
+    if (activeAcc && activeAcc.isActive === true) {
+      //dispatch(getOneUser({ id: activeAcc.id }) as any);
+      return setActive(true);
+    }
+  }, [activeAcc])
 
   useEffect(() => {
     if (accounts.length > 0) {
       const userWithMatchingEmail = accounts.find(user => user.username === accountObj.username);
       if (userWithMatchingEmail) {
         setMatchingUser(Number(userWithMatchingEmail.id));
+        dispatch(getOneUser({id: userWithMatchingEmail.id}) as any)
+        localStorage.setItem('accountObj', JSON.stringify({username: userWithMatchingEmail.username, id: userWithMatchingEmail.id}));
         setAccount({ ...accountObj, isActive: true })
       }
     }

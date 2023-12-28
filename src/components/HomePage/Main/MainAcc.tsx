@@ -68,6 +68,7 @@ const ProfileComp = () => {
     singerName: '',
     isVerified: true,
     singerbg: '',
+    isActive: false,
   })
 
   const [active, setActive] = useState(false)
@@ -82,16 +83,6 @@ const ProfileComp = () => {
   }
 
   useEffect(() => {
-    if (activeAcc) {
-      localStorage.setItem('accountObj', JSON.stringify({username: activeAcc.username, isActive: activeAcc.isActive, id: activeAcc.id}));
-    }
-    if (activeAcc && activeAcc.isActive === true) {
-      //dispatch(getOneUser({ id: activeAcc.id }) as any);
-      return setActive(true);
-    }
-  }, [activeAcc])
-
-  useEffect(() => {
     const accountObjString = localStorage.getItem('accountObj');
     if (accountObjString) {
       const parsedAccountObj = JSON.parse(accountObjString);
@@ -99,6 +90,16 @@ const ProfileComp = () => {
       dispatch(getOneUser({ id: parsedAccountObj.id }) as any);
     }
   }, []);
+
+  useEffect(() => {
+    if (activeAcc) {
+      localStorage.setItem('accountObj', JSON.stringify({username: activeAcc.username, isActive: activeAcc.isActive, id: activeAcc.id}));
+    }
+    if (activeAcc && activeAcc.isActive === true) {
+      dispatch(getOneUser({ id: 1 }) as any);
+      return setActive(true);
+    }
+  }, [activeAcc])
 
   return (
     <>

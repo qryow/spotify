@@ -26,16 +26,6 @@ const Navbar = () => {
   const [sortDrop, setSortDrop] = useState(false);
 
   const dispatch = useDispatch()
-
-  const [playlistObj, setPlaylist] = useState({
-      PlaylistName: 'Название вашего плейлиста',
-      PlaylistBg: 'https://i.pinimg.com/564x/85/df/5e/85df5ede384599060330d838c8415174.jpg',
-      PlaylistSongs: [
-        // Массив объектов PlaylistSong
-      ],
-      author: '',
-      id: '',
-  })
   
   const menuRef = useRef(null);
   useClickOutside(menuRef, () => {
@@ -100,6 +90,15 @@ const Navbar = () => {
     //dispatch(createPlaylist(playlistObj) as any)
   }, [])
 
+  
+  useEffect(() => {
+    const accountObjString = localStorage.getItem('accountObj');
+    if (accountObjString) {
+      const parsedAccountObj = JSON.parse(accountObjString);
+      dispatch(getOneUser({ id: parsedAccountObj.id }) as any);
+    }
+  }, []);
+  
   useEffect(() => {
     if (activeAcc) {
       localStorage.setItem('accountObj', JSON.stringify({username: activeAcc.username, isActive: activeAcc.isActive, id: activeAcc.id}))
@@ -111,13 +110,15 @@ const Navbar = () => {
     }
   }, [activeAcc])
 
-  useEffect(() => {
-    const accountObjString = localStorage.getItem('accountObj');
-    if (accountObjString) {
-      const parsedAccountObj = JSON.parse(accountObjString);
-      dispatch(getOneUser({ id: parsedAccountObj.id }) as any);
-    }
-  }, []);
+
+  const [playlistObj, setPlaylist] = useState({
+    PlaylistName: 'Название вашего плейлиста',
+    PlaylistBg: 'https://i.pinimg.com/564x/85/df/5e/85df5ede384599060330d838c8415174.jpg',
+    PlaylistSongs: [
+    ],
+    author: '',
+    id: '',
+})
 
 
   return (

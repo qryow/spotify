@@ -19,7 +19,7 @@ const MainVerify = () => {
   const [sortDrop, setSortDrop] = useState(false);
   const [modal, setModal] = useState(false);
 
-  const [editModal, setEditModal] = useState(true);
+  const [editModal, setEditModal] = useState(false);
   const [songModal, setSongModal] = useState(false);
 
   const navigate = useNavigate();
@@ -33,7 +33,6 @@ const MainVerify = () => {
   
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5
     },
@@ -188,7 +187,7 @@ const MainVerify = () => {
             </div>
           </div>
           <div className={editModal ? `${style.modal__wrapper} ${style.modal__active}` : `${style.modal__wrapper}`} >
-            <div className={style.modal} ref={menuRef}>
+            <div className={style.modal}>
               <h2>Изменить профиль</h2>
               <div className={style.close__img} onClick={() => setSongModal(false)}>
                 <img src={close} alt="" />
