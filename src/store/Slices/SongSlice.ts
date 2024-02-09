@@ -151,6 +151,7 @@ export const addToPlaylist = createAsyncThunk(
     try {
       // Получаем текущие данные плейлистов
       const playlistsRes = await axios.get(PLAYLISTS_API);
+      console.log(playlistsRes)
       const playlists = playlistsRes.data;
 
       // Находим нужный плейлист по его идентификатору
